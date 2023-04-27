@@ -26,5 +26,22 @@ public class ScoreValidatorTest {
         boolean validationResult = scoreValidator.validate(scores);
 
         assertTrue(validationResult);
+    } @Test
+    void shouldReturnFalseWhenGivenListLessThan10(){
+        List<Integer> scores = List.of(1,2,3,4,5,6,7,8,9);
+        ScoreValidator scoreValidator = new ScoreValidator();
+
+        boolean validationResult = scoreValidator.validate(scores);
+
+        assertFalse(validationResult);
+    }
+    @Test
+    void shouldReturnTrueWhenGivenListOfLength10() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        ScoreValidator scoreValidator = new ScoreValidator();
+
+        boolean validationResult = scoreValidator.validate(scores);
+
+        assertTrue(validationResult);
     }
 }

@@ -61,6 +61,7 @@ public class ScoreValidatorTest {
         boolean validationResult = scoreValidator.validate(scores);
 
         assertFalse(validationResult);
+
     }
     @Test
     void shouldReturnTrueWhenAttemptTwoIs0WhenAttemptOneIs10() {

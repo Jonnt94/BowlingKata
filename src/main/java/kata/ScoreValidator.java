@@ -6,6 +6,7 @@ public class ScoreValidator {
 
     public boolean validate(List<Integer> scores) {
 
+
 //    public boolean validate(List<Integer> scores) {
 //        if(scores.size() >= 10 && scores.size() <= 20){
 //            return true;
@@ -43,8 +44,8 @@ public class ScoreValidator {
 //    }
 
 
-        public boolean validate(List<Integer> scores){
-            if (scores.contains(10)){
+        public boolean validate(List < Integer > scores) {
+            if (scores.contains(10)) {
                 return true;
             }
             return false;

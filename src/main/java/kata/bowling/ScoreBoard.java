@@ -1,7 +1,6 @@
 package kata.bowling;
 
 import java.util.List;
-import java.util.ListIterator;
 
 public class ScoreBoard {
     public int calculateScore(List<Integer> scores) {

@@ -13,4 +13,12 @@ public class Frame {
     public int calculateScore(){
         return attempt1 + attempt2;
     }
+
+    @Override
+    public String toString() {
+        return "Frame{" +
+                "attempt1=" + attempt1 +
+                ", attempt2=" + attempt2 +
+                '}';
+    }
 }

@@ -1,7 +1,10 @@
 package kata.bowling;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class ScoreValidator {
 
     public boolean validate(List<Integer> scores) {

@@ -2,15 +2,16 @@ package kata;
 
 
 import kata.bowling.ScoreBoard;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 
+@SpringBootApplication
 public class Main {
 
-
     public static void main(String[] args) {
-        ScoreBoard scoreBoard = new ScoreBoard();
-        int score = scoreBoard.calculateScore(List.of(10,10,5));
-        System.out.println(score);
+        SpringApplication.run(Main.class, args);
+        System.out.println("================ Main started successfully ================");
     }
 }

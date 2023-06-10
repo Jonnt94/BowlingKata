@@ -1,22 +1,14 @@
 package kata;
 
 
-import kata.bowling.Frame;
-import kata.bowling.FrameMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
-
-
+@SpringBootApplication
 public class Main {
 
-
     public static void main(String[] args) {
-        List<Integer> scores = List.of(4,5,3,4,6,4,6,4,2,2,4,5,3,4,6,4,6,4,2,2);
-//        validate scores.
-
-        FrameMapper frameMapper = new FrameMapper();
-        List<Frame> frames = frameMapper.map(scores);
-
+        SpringApplication.run(Main.class, args);
+        System.out.println("================ Main started successfully ================");
     }
-
 }

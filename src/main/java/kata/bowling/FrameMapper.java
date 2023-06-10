@@ -1,10 +1,12 @@
 package kata.bowling;
 
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 import static kata.bowling.StrikeMapper.addSecondAttemptForStrikes;
 
+@Component
 public class FrameMapper {
     public List<Frame> map(List<Integer> scores) {
         List<Integer> completeScores = addSecondAttemptForStrikes(scores);

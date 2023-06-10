@@ -11,8 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ScoreBoard.class})
@@ -22,25 +21,21 @@ class ScoreBoardTest {
     private ScoreBoard scoreBoard;
     @MockBean
     private ScoreValidator scoreValidator;
+    @MockBean
+    private FrameMapper frameMapper;
     @Test
-    void shouldCalculateAndReturnScore35() {
+    void shouldCalculateAndReturnScore16() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
+        List<Frame> frames = List.of(new Frame(1, 2), new Frame(3, 4), new Frame(5, 6));
+
         when(scoreValidator.validate(any())).thenReturn(true);
-        List<Integer> scores = List.of(10, 10, 10, 5);
+        when(frameMapper.map(any())).thenReturn(frames);
 
         int totalScore = scoreBoard.calculateScore(scores);
 
         verify(scoreValidator).validate(scores);
-        assertEquals(35, totalScore);
-    }
-    @Test
-    void shouldCalculateAndReturnScore40() {
-        when(scoreValidator.validate(any())).thenReturn(true);
-        List<Integer> scores = List.of(10, 10, 10, 10);
-
-        int totalScore = scoreBoard.calculateScore(scores);
-
-        verify(scoreValidator).validate(scores);
-        assertEquals(40, totalScore);
+        verify(frameMapper).map(scores);
+        assertEquals(21, totalScore);
     }
     @Test
     void shouldReturn0WhenScoresNotValid() {
@@ -51,5 +46,8 @@ class ScoreBoardTest {
 
         verify(scoreValidator).validate(scores);
         assertEquals(0, totalScore);
+
+        verify(frameMapper, never()).map(any());
     }
+
 }

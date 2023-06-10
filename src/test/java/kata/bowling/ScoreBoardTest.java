@@ -30,7 +30,7 @@ class ScoreBoardTest {
 
         int totalScore = scoreBoard.calculateScore(scores);
 
-        verify(scoreValidator).validate(List.of(10, 10, 10, 5));
+        verify(scoreValidator).validate(scores);
         assertEquals(35, totalScore);
     }
     @Test
@@ -40,7 +40,7 @@ class ScoreBoardTest {
 
         int totalScore = scoreBoard.calculateScore(scores);
 
-        verify(scoreValidator).validate(List.of(10, 10, 10, 10));
+        verify(scoreValidator).validate(scores);
         assertEquals(40, totalScore);
     }
     @Test
@@ -50,7 +50,7 @@ class ScoreBoardTest {
 
         int totalScore = scoreBoard.calculateScore(scores);
 
-        verify(scoreValidator).validate(List.of(10, 10, 10, 10));
+        verify(scoreValidator).validate(scores);
         assertEquals(0, totalScore);
     }
 }

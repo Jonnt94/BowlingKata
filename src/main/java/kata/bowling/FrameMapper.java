@@ -13,7 +13,7 @@ public class FrameMapper {
         List<Frame> frames = new ArrayList<>();
 
         for (int i = 0; i < completeScores.size(); i += 2) {
-            Frame frame = new Frame(completeScores.get(i), completeScores.get(i+1));
+            Frame frame = Frame.of(completeScores.get(i), completeScores.get(i+1));
             frames.add(frame);
         }
 

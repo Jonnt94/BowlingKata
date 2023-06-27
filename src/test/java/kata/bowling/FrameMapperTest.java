@@ -19,9 +19,9 @@ class FrameMapperTest {
 
         assertThat(frames).hasSize(3);
         assertAll(
-                () -> assertThat(frames.get(0)).isEqualToComparingFieldByField(new Frame(5, 5)),
-                () -> assertThat(frames.get(1)).isEqualToComparingFieldByField(new Frame(4, 5)),
-                () -> assertThat(frames.get(2)).isEqualToComparingFieldByField(new Frame(6, 2))
+                () -> assertThat(frames.get(0)).isEqualToComparingFieldByField(Frame.of(5, 5)),
+                () -> assertThat(frames.get(1)).isEqualToComparingFieldByField(Frame.of(4, 5)),
+                () -> assertThat(frames.get(2)).isEqualToComparingFieldByField(Frame.of(6, 2))
         );
     }
     @Test
@@ -32,9 +32,9 @@ class FrameMapperTest {
 
         assertThat(frames).hasSize(3);
         assertAll(
-                () -> assertThat(frames.get(0)).isEqualToComparingFieldByField(new Frame(5, 5)),
-                () -> assertThat(frames.get(1)).isEqualToComparingFieldByField(new Frame(10, 0)),
-                () -> assertThat(frames.get(2)).isEqualToComparingFieldByField(new Frame(6, 2))
+                () -> assertThat(frames.get(0)).isEqualToComparingFieldByField(Frame.of(5, 5)),
+                () -> assertThat(frames.get(1)).isEqualToComparingFieldByField(Frame.of(10, 0)),
+                () -> assertThat(frames.get(2)).isEqualToComparingFieldByField(Frame.of(6, 2))
         );
     }
 

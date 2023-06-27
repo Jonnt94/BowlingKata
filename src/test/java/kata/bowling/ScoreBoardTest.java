@@ -23,18 +23,22 @@ class ScoreBoardTest {
     private ScoreValidator scoreValidator;
     @MockBean
     private FrameMapper frameMapper;
+    @MockBean
+    private ScoreCalculator scoreCalculator;
     @Test
     void shouldCalculateAndReturnScore16() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
-        List<Frame> frames = List.of(new Frame(1, 2), new Frame(3, 4), new Frame(5, 6));
+        List<Frame> frames = List.of(new Frame(1, 2));
 
         when(scoreValidator.validate(any())).thenReturn(true);
         when(frameMapper.map(any())).thenReturn(frames);
+        when(scoreCalculator.calculate(any())).thenReturn(21);
 
         int totalScore = scoreBoard.calculateScore(scores);
 
         verify(scoreValidator).validate(scores);
         verify(frameMapper).map(scores);
+        verify(scoreCalculator).calculate(frames);
         assertEquals(21, totalScore);
     }
     @Test

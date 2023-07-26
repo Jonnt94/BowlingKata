@@ -14,9 +14,13 @@ public class Frame {
         return new Frame(attempt1, attempt2);
     }
 
-    public int calculateScore(){
+    public int totalPinsKnockedDown(){
         return attempt1 + attempt2;
     }
+
+    public int pinsKnockedDownAttempt1(){return attempt1;}
+
+    public int pinsKnockedDownAttempt2(){return attempt2;}
 
     @Override
     public String toString() {

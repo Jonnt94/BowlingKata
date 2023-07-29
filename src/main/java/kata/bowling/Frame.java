@@ -22,6 +22,12 @@ public class Frame {
 
     public int pinsKnockedDownAttempt2(){return attempt2;}
 
+    public boolean isStrike(){return attempt1 == 10;}
+
+    public boolean isSpare(){return attempt1 + attempt2 == 10 && !isStrike();}
+
+    public boolean isStrikeOrSpare(){return isStrike() || isSpare();}
+
     @Override
     public String toString() {
         return "Frame{" +

@@ -1,6 +1,6 @@
 package kata.bowling;
 
-import  org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,9 +15,10 @@ public class ScoreBoard {
         this.scoreCalculator = scoreCalculator;
     }
 
+    // Add Frame Validation.
     public int calculateScore(List<Integer> scores) {
         if (scoreValidator.validate(scores)) {
-            List<Frame> frames = frameMapper.map(scores);
+            Frames frames = frameMapper.map(scores);
             return scoreCalculator.calculate(frames);
         }
         return 0;

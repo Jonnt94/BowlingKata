@@ -28,7 +28,7 @@ class ScoreBoardTest {
     @Test
     void shouldCalculateAndReturnScore16() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
-        List<Frame> frames = List.of(Frame.of(1, 2));
+        Frames frames = new Frames(List.of(Frame.of(1, 2)));
 
         when(scoreValidator.validate(any())).thenReturn(true);
         when(frameMapper.map(any())).thenReturn(frames);

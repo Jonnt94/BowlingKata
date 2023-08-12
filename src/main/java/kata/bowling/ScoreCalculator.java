@@ -1,13 +1,11 @@
 package kata.bowling;
 
-import java.util.List;
-
 public class ScoreCalculator {
 // refactor this to use private methods.
-    public int calculate(List<Frame> frames) {
+    public int calculate(Frames frames) {
         int runningTotal = 0;
-        for (int i = 0; i < 10; i++) {
-            Frame frame = frames.get(i);
+        for (int i = 1; i <= 10; i++) {
+            Frame frame = frames.getFrameAtPosition(i);
             int totalPinsKnockedDownInFrame = frame.totalPinsKnockedDown();
             runningTotal += totalPinsKnockedDownInFrame;
             if (frame.isStrikeOrSpare()) {
@@ -17,11 +15,11 @@ public class ScoreCalculator {
         return runningTotal;
     }
 
-    private int getBonusScore(List<Frame> frames, Frame currentFrame, int i){
-        Frame nextFrame = frames.get(i + 1);
+    private int getBonusScore(Frames frames, Frame currentFrame, int i){
+        Frame nextFrame = frames.getFrameAtPosition(i + 1);
         int bonusScore;
         if (currentFrame.isStrike()) {
-            Frame nextNextFrame = frames.get(i + 2);
+            Frame nextNextFrame = frames.getFrameAtPosition(i + 2);
             bonusScore = getBonusStrikeScore(nextFrame, nextNextFrame);
         } else {
             bonusScore = getBonusSpareScore(nextFrame);

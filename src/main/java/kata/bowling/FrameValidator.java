@@ -13,15 +13,18 @@ public class FrameValidator {
             if(frames.numberOfFrames() == 10){
                 return false;
             }
-            if(frames.numberOfFrames() == 11){
-                return true;
-            }
-            if (frames.numberOfFrames() == 12){
-                if(frames.getFrameAtPosition(11).isStrike()){
+            if(frames.getFrameAtPosition(11).isStrike()){
+                if(frames.numberOfFrames()==11){
+                    return false;
+                }
+                if (frames.numberOfFrames() == 12){
                     if(frames.getFrameAtPosition(12).pinsKnockedDownAttempt2() == 0){
                         return true;
                     }
                 }
+            }
+            if(frames.numberOfFrames()==11){
+                return true;
             }
         }
 

@@ -97,6 +97,15 @@ class FrameValidatorTest {
 
         assertThat(valid).isFalse();
     }
+    @Test
+    void returnsFalseWhenTenthFrameIsStrikeAndEleventhFrameIsAStrikeButTwelfthFrame(){
+        Frames frames = NINE_STANDARD_FRAMES.append(Frame.of(10,0)).append(Frame.of(10,0));
+
+        FrameValidator frameValidator = new FrameValidator();
+        boolean valid = frameValidator.validate(frames);
+
+        assertThat(valid).isFalse();
+    }
 
     @Test
     void returnsFalseWhenTenthFrameIsSpareAndNoAdditionalFrames(){
@@ -107,5 +116,6 @@ class FrameValidatorTest {
 
         assertThat(valid).isFalse();
     }
+
 
 }

@@ -1,7 +1,7 @@
 package kata.bowling;
 
 public class ScoreCalculator {
-// refactor this to use private methods.
+// Long term: build up calculate method into a scorecard class.
     public int calculate(Frames frames) {
         int runningTotal = 0;
         for (int i = 1; i <= 10; i++) {

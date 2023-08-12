@@ -53,5 +53,5 @@ class ScoreBoardTest {
 
         verify(frameMapper, never()).map(any());
     }
-
+// pass score validation and fail score validation tests.
 }

@@ -15,10 +15,11 @@ public class ScoreBoard {
         this.scoreCalculator = scoreCalculator;
     }
 
-    // Add Frame Validation.
+
     public int calculateScore(List<Integer> scores) {
         if (scoreValidator.validate(scores)) {
             Frames frames = frameMapper.map(scores);
+            // Add Frame Validation.
             return scoreCalculator.calculate(frames);
         }
         return 0;

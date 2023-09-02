@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ScoreValidatorTest {
     @Test
-    void shouldReturnFalseWhenGivenListLongerThan20() {
-        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1);
+    void shouldReturnFalseWhenGivenListLongerThan21() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);
@@ -19,8 +19,8 @@ class ScoreValidatorTest {
     }
 
     @Test
-    void shouldReturnTrueWhenGivenListOfLength20() {
-        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    void shouldReturnTrueWhenGivenListOfLength21() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);
@@ -29,8 +29,8 @@ class ScoreValidatorTest {
     }
 
     @Test
-    void shouldReturnFalseWhenGivenListLessThan10() {
-        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    void shouldReturnFalseWhenGivenListLessThan12() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);
@@ -39,8 +39,8 @@ class ScoreValidatorTest {
     }
 
     @Test
-    void shouldReturnTrueWhenGivenListOfLength10() {
-        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    void shouldReturnTrueWhenGivenListOfLength12() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 ,2);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);
@@ -50,7 +50,7 @@ class ScoreValidatorTest {
 
     @Test
     void shouldReturnFalseWhenNumberEnteredLessThanZero() {
-        List<Integer> scores = List.of(1, 2, 3, 4, -5, 6, 7, 8, 9, 10, 10);
+        List<Integer> scores = List.of(1, 2, 3, 4, -5, 6, 7, 8, 9, 10, 1, 2);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);
@@ -59,7 +59,7 @@ class ScoreValidatorTest {
     }
 
     @Test void shouldReturnFalseWhenGivenSingularNumberGreaterThan10(){
-        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2);
         ScoreValidator scoreValidator = new ScoreValidator();
 
         boolean validationResult = scoreValidator.validate(scores);

@@ -11,7 +11,7 @@ class FrameMapperTest {
     FrameMapper frameMapper = new FrameMapper();
 
     @Test
-    void shouldMapToFrames_whenGivenASimpleListOfScores() {
+    void shouldMapToFramesWhenGivenASimpleListOfScores() {
         List<Integer> scores = List.of(5, 5, 4, 5, 6, 2);
 
         Frames frames = frameMapper.map(scores);
@@ -24,7 +24,7 @@ class FrameMapperTest {
         );
     }
     @Test
-    void shouldMapToFrames_whenGivenAListOfScoresContainingAStrike() {
+    void shouldMapToFramesWhenGivenAListOfScoresContainingAStrike() {
         List<Integer> scores = List.of(5, 5, 10, 6, 2);
 
         Frames frames = frameMapper.map(scores);
@@ -34,6 +34,19 @@ class FrameMapperTest {
                 () -> assertThat(frames.getFrameAtPosition(1)).isEqualToComparingFieldByField(Frame.of(5, 5)),
                 () -> assertThat(frames.getFrameAtPosition(2)).isEqualToComparingFieldByField(Frame.of(10, 0)),
                 () -> assertThat(frames.getFrameAtPosition(3)).isEqualToComparingFieldByField(Frame.of(6, 2))
+        );
+    }
+    @Test
+    void shouldMapToFramesWhenGivenAnUnevenNumberOfScores() {
+        List<Integer> scores = List.of(5, 5, 4, 5, 6);
+
+        Frames frames = frameMapper.map(scores);
+
+        assertThat(frames.numberOfFrames()).isEqualTo(3);
+        assertAll(
+                () -> assertThat(frames.getFrameAtPosition(1)).isEqualToComparingFieldByField(Frame.of(5, 5)),
+                () -> assertThat(frames.getFrameAtPosition(2)).isEqualToComparingFieldByField(Frame.of(4, 5)),
+                () -> assertThat(frames.getFrameAtPosition(3)).isEqualToComparingFieldByField(Frame.of(6, 0))
         );
     }
 

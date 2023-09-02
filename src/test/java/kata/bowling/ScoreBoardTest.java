@@ -25,19 +25,23 @@ class ScoreBoardTest {
     private FrameMapper frameMapper;
     @MockBean
     private ScoreCalculator scoreCalculator;
+    @MockBean
+    private FrameValidator frameValidator;
     @Test
-    void shouldCalculateAndReturnScore16() {
+    void shouldCalculateAndReturnScore() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
         Frames frames = new Frames(List.of(Frame.of(1, 2)));
 
         when(scoreValidator.validate(any())).thenReturn(true);
         when(frameMapper.map(any())).thenReturn(frames);
+        when(frameValidator.validate(any())).thenReturn(true);
         when(scoreCalculator.calculate(any())).thenReturn(21);
 
         int totalScore = scoreBoard.calculateScore(scores);
 
         verify(scoreValidator).validate(scores);
         verify(frameMapper).map(scores);
+        verify(frameValidator).validate(frames);
         verify(scoreCalculator).calculate(frames);
         assertEquals(21, totalScore);
     }
@@ -52,6 +56,26 @@ class ScoreBoardTest {
         assertEquals(0, totalScore);
 
         verify(frameMapper, never()).map(any());
+        verify(frameValidator, never()).validate(any());
+        verify(scoreCalculator, never()).calculate(any());
     }
-// pass score validation and fail score validation tests.
+
+    @Test
+    void shouldReturn0WhenFramesNotValid() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
+        Frames frames = new Frames(List.of(Frame.of(1, 2)));
+
+        when(scoreValidator.validate(any())).thenReturn(true);
+        when(frameMapper.map(any())).thenReturn(frames);
+        when(frameValidator.validate(any())).thenReturn(false);
+        when(scoreCalculator.calculate(any())).thenReturn(21);
+
+        int totalScore = scoreBoard.calculateScore(scores);
+
+        verify(scoreValidator).validate(scores);
+        verify(frameMapper).map(scores);
+        verify(frameValidator).validate(frames);
+        verify(scoreCalculator, never()).calculate(any());
+        assertEquals(0, totalScore);
+    }
 }

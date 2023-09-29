@@ -15,6 +15,10 @@ public class ScoreCalculator {
         return runningTotal;
     }
 
+    public ScoreCard calculateScoreCard(Frames frames){
+        return null;
+    }
+
     private int getBonusScore(Frames frames, Frame currentFrame, int i){
         Frame nextFrame = frames.getFrameAtPosition(i + 1);
         int bonusScore;

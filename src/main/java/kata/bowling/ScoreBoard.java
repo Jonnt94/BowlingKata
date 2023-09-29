@@ -31,4 +31,15 @@ public class ScoreBoard {
         return 0;
     }
 
+    public ScoreCard calculateDetailedScores(List<Integer> scores) {
+        if (scoreValidator.validate(scores)) {
+            Frames frames = frameMapper.map(scores);
+            if (frameValidator.validate(frames)) {
+                return scoreCalculator.calculateScoreCard(frames);
+            }
+            throw new IllegalStateException("Frames not valid!");
+        }
+        throw new IllegalStateException("Scores not valid!");
+    }
+
 }

@@ -1,5 +1,7 @@
 package kata.bowling;
 
+import java.util.Objects;
+
 public class Frame {
     private final int attempt1;
     private final int attempt2;
@@ -34,5 +36,18 @@ public class Frame {
                 "attempt1=" + attempt1 +
                 ", attempt2=" + attempt2 +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Frame frame = (Frame) o;
+        return attempt1 == frame.attempt1 && attempt2 == frame.attempt2;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attempt1, attempt2);
     }
 }

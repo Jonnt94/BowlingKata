@@ -9,6 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -28,7 +30,7 @@ class ScoreBoardTest {
     @MockBean
     private FrameValidator frameValidator;
     @Test
-    void shouldCalculateAndReturnScore() {
+    void calculateScore_shouldCalculateAndReturnScore() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
         Frames frames = new Frames(List.of(Frame.of(1, 2)));
 
@@ -46,7 +48,7 @@ class ScoreBoardTest {
         assertEquals(21, totalScore);
     }
     @Test
-    void shouldReturn0WhenScoresNotValid() {
+    void calculateScore_shouldReturn0WhenScoresNotValid() {
         when(scoreValidator.validate(any())).thenReturn(false);
         List<Integer> scores = List.of(10, 10, 10, 10);
 
@@ -61,7 +63,7 @@ class ScoreBoardTest {
     }
 
     @Test
-    void shouldReturn0WhenFramesNotValid() {
+    void calculateScore_shouldReturn0WhenFramesNotValid() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
         Frames frames = new Frames(List.of(Frame.of(1, 2)));
 
@@ -77,5 +79,58 @@ class ScoreBoardTest {
         verify(frameValidator).validate(frames);
         verify(scoreCalculator, never()).calculate(any());
         assertEquals(0, totalScore);
+    }
+
+    @Test
+    void calculateDetailedScore_shouldCalculateAndReturnScore() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
+        Frames frames = new Frames(List.of(Frame.of(1, 2)));
+        ScoreCard scoreCard = new ScoreCard();
+
+        when(scoreValidator.validate(any())).thenReturn(true);
+        when(frameMapper.map(any())).thenReturn(frames);
+        when(frameValidator.validate(any())).thenReturn(true);
+        when(scoreCalculator.calculateScoreCard(any())).thenReturn(scoreCard);
+
+        ScoreCard returnedScoreCard = scoreBoard.calculateDetailedScores(scores);
+
+        verify(scoreValidator).validate(scores);
+        verify(frameMapper).map(scores);
+        verify(frameValidator).validate(frames);
+        verify(scoreCalculator).calculateScoreCard(frames);
+        assertThat(returnedScoreCard).isSameAs(scoreCard);
+    }
+    @Test
+    void calculateDetailedScore_shouldReturn0WhenScoresNotValid() {
+        when(scoreValidator.validate(any())).thenReturn(false);
+        List<Integer> scores = List.of(10, 10, 10, 10);
+
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(()->scoreBoard.calculateDetailedScores(scores))
+                .withMessage("Scores not valid!");
+
+        verify(scoreValidator).validate(scores);
+        verify(frameMapper, never()).map(any());
+        verify(frameValidator, never()).validate(any());
+        verify(scoreCalculator, never()).calculateScoreCard(any());
+    }
+
+    @Test
+    void calculateDetailedScore_shouldReturn0WhenFramesNotValid() {
+        List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
+        Frames frames = new Frames(List.of(Frame.of(1, 2)));
+
+        when(scoreValidator.validate(any())).thenReturn(true);
+        when(frameMapper.map(any())).thenReturn(frames);
+        when(frameValidator.validate(any())).thenReturn(false);
+
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(()->scoreBoard.calculateDetailedScores(scores))
+                .withMessage("Frames not valid!");
+
+        verify(scoreValidator).validate(scores);
+        verify(frameMapper).map(scores);
+        verify(frameValidator).validate(frames);
+        verify(scoreCalculator, never()).calculateScoreCard(any());
     }
 }

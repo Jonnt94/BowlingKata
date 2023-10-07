@@ -1,5 +1,11 @@
 package kata.bowling;
 
+import kata.bowling.ScoreCard.ScoreCardBuilder;
+import org.springframework.stereotype.Component;
+
+import static kata.bowling.ScoreCard.ScoreCardBuilder.aScoreCard;
+
+@Component
 public class ScoreCalculator {
 // Long term: build up calculate method into a scorecard class.
     public int calculate(Frames frames) {
@@ -16,7 +22,18 @@ public class ScoreCalculator {
     }
 
     public ScoreCard calculateScoreCard(Frames frames){
-        return null;
+        int runningTotal = 0;
+        ScoreCardBuilder scoreCardBuilder = aScoreCard();
+        for (int i = 1; i <= 10; i++) {
+            Frame frame = frames.getFrameAtPosition(i);
+            int totalPinsKnockedDownInFrame = frame.totalPinsKnockedDown();
+            runningTotal += totalPinsKnockedDownInFrame;
+            if (frame.isStrikeOrSpare()) {
+                runningTotal += getBonusScore(frames, frame, i);
+            }
+            scoreCardBuilder.appendWithFrameScore(new FrameScore(frame, runningTotal));
+        }
+        return scoreCardBuilder.build();
     }
 
     private int getBonusScore(Frames frames, Frame currentFrame, int i){

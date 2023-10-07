@@ -12,6 +12,11 @@ public class FrameScore {
 
     }
 
+    public int getFrameScore(){
+        return this.score;
+    }
+
+
     @Override
     public String toString() {
         return "FrameScore{" +

@@ -9,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+import static kata.bowling.ScoreCard.ScoreCardBuilder.aScoreCard;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -85,7 +86,7 @@ class ScoreBoardTest {
     void calculateDetailedScore_shouldCalculateAndReturnScore() {
         List<Integer> scores = List.of(1, 2, 3, 4, 5, 6);
         Frames frames = new Frames(List.of(Frame.of(1, 2)));
-        ScoreCard scoreCard = new ScoreCard();
+        ScoreCard scoreCard = aScoreCard().build();
 
         when(scoreValidator.validate(any())).thenReturn(true);
         when(frameMapper.map(any())).thenReturn(frames);

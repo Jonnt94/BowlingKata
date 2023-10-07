@@ -82,6 +82,7 @@ class ScoreCalculatorTest {
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(1,2),3));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(3,4),10));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(5,4),19));
@@ -104,6 +105,7 @@ class ScoreCalculatorTest {
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(1,2),3));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(3,4),10));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(5,5),24));
@@ -121,10 +123,11 @@ class ScoreCalculatorTest {
 
         ScoreCard scoreCard = scoreCalculator.calculateScoreCard(frames);
 
-        assertThat(scoreCard.getTotalScore()).isEqualTo(163);
+        assertThat(scoreCard.getTotalScore()).isEqualTo(154);
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(0,10),11));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(1,9),23));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(2,8),36));
@@ -135,7 +138,6 @@ class ScoreCalculatorTest {
         assertThat(frameScores.get(7)).isEqualTo(new FrameScore(Frame.of(7,3),116));
         assertThat(frameScores.get(8)).isEqualTo(new FrameScore(Frame.of(8,2),135));
         assertThat(frameScores.get(9)).isEqualTo(new FrameScore(Frame.of(9,1),154));
-        assertThat(frameScores.get(10)).isEqualTo(new FrameScore(Frame.of(9,0),163));
     }
 
     @Test
@@ -148,6 +150,7 @@ class ScoreCalculatorTest {
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(1,2),3));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(3,4),10));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(5,4),19));
@@ -169,6 +172,7 @@ class ScoreCalculatorTest {
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(10,0),30));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(10,0),60));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(10,0),90));
@@ -179,8 +183,6 @@ class ScoreCalculatorTest {
         assertThat(frameScores.get(7)).isEqualTo(new FrameScore(Frame.of(10,0),240));
         assertThat(frameScores.get(8)).isEqualTo(new FrameScore(Frame.of(10,0),270));
         assertThat(frameScores.get(9)).isEqualTo(new FrameScore(Frame.of(10,0),300));
-        assertThat(frameScores.get(10)).isEqualTo(new FrameScore(Frame.of(10,0),320));
-        assertThat(frameScores.get(11)).isEqualTo(new FrameScore(Frame.of(10,0),330));
 
     }
 
@@ -194,6 +196,7 @@ class ScoreCalculatorTest {
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(10,0),17));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(3,4),24));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(5,5),40));
@@ -211,10 +214,11 @@ class ScoreCalculatorTest {
 
         ScoreCard scoreCard = scoreCalculator.calculateScoreCard(frames);
 
-        assertThat(scoreCard.getTotalScore()).isEqualTo(199);
+        assertThat(scoreCard.getTotalScore()).isEqualTo(190);
 
         List<FrameScore> frameScores = scoreCard.getFrameScores();
 
+        assertThat(frameScores.size()).isEqualTo(10);
         assertThat(frameScores.get(0)).isEqualTo(new FrameScore(Frame.of(9,1),19));
         assertThat(frameScores.get(1)).isEqualTo(new FrameScore(Frame.of(9,1),38));
         assertThat(frameScores.get(2)).isEqualTo(new FrameScore(Frame.of(9,1),57));
@@ -225,6 +229,5 @@ class ScoreCalculatorTest {
         assertThat(frameScores.get(7)).isEqualTo(new FrameScore(Frame.of(9,1),152));
         assertThat(frameScores.get(8)).isEqualTo(new FrameScore(Frame.of(9,1),171));
         assertThat(frameScores.get(9)).isEqualTo(new FrameScore(Frame.of(9,1),190));
-        assertThat(frameScores.get(10)).isEqualTo(new FrameScore(Frame.of(9,0),199));
     }
 }

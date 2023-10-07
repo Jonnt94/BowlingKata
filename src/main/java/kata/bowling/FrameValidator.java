@@ -1,5 +1,8 @@
 package kata.bowling;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class FrameValidator {
     public boolean validate(Frames frames){
 

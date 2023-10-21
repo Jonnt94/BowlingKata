@@ -20,18 +20,13 @@ public class ScoreCard {
 
 
     public static final class ScoreCardBuilder {
-        private List<FrameScore> frameScores = new ArrayList<>();
+        private final List<FrameScore> frameScores = new ArrayList<>();
 
         private ScoreCardBuilder() {
         }
 
         public static ScoreCardBuilder aScoreCard() {
             return new ScoreCardBuilder();
-        }
-
-        public ScoreCardBuilder withFrameScore(List<FrameScore> frameScores) {
-            this.frameScores = frameScores;
-            return this;
         }
 
         public ScoreCardBuilder appendWithFrameScore(FrameScore frameScore){
@@ -42,5 +37,12 @@ public class ScoreCard {
         public ScoreCard build() {
             return new ScoreCard(frameScores);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ScoreCard{" +
+                "frameScores=" + frameScores +
+                '}';
     }
 }
